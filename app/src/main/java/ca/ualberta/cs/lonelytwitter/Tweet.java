@@ -13,7 +13,7 @@ import io.searchbox.annotations.JestId;
 
 public abstract class Tweet {
     @JestId
-    protected String id;
+    private String id;
 
     public String getId() {
         return id;
@@ -65,7 +65,7 @@ public abstract class Tweet {
     }
 
     //@Override
-    public abstract Boolean isImportant();
+    //public abstract Boolean isImportant();
 
     @Override
     public String toString() {
@@ -80,6 +80,8 @@ public abstract class Tweet {
         return date.toString() + " | " + message;
     }
 
+
+    abstract Boolean isImportant();
 
     public Date getDate() {
         return this.date;

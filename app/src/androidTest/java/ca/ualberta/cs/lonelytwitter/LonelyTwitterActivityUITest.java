@@ -14,7 +14,8 @@ import android.widget.EditText;
 public class LonelyTwitterActivityUITest extends ActivityInstrumentationTestCase2 {
 
     Instrumentation instrumentation;
-    Activity activity;
+    // Made private
+    private Activity activity;
     EditText textInput;
 
     public LonelyTwitterActivityUITest() {
@@ -29,10 +30,12 @@ public class LonelyTwitterActivityUITest extends ActivityInstrumentationTestCase
     }
 
     //makeTweet(text) fills in the input text field and clicks the 'save' button for the activity under test:
-    private void makeTweet(String text) {
+    //reduced redundancy
+    private void makeTweet() {
         assertNotNull(activity.findViewById(ca.ualberta.cs.lonelytwitter.R.id.saveButton));
-        textInput.setText(text);
-        ((Button) activity.findViewById(ca.ualberta.cs.lonelytwitter.R.id.saveButton)).performClick();
+        //Removed redundant cast
+        textInput.setText("test string");
+        activity.findViewById(R.id.saveButton).performClick();
     }
 
     @UiThreadTest
@@ -40,7 +43,7 @@ public class LonelyTwitterActivityUITest extends ActivityInstrumentationTestCase
         LonelyTwitterActivity lta = (LonelyTwitterActivity) getActivity();
         int oldLength = lta.getAdapter().getCount();
 
-        makeTweet("test string");
+        makeTweet();
         ArrayAdapter<Tweet> arrayAdapter = lta.getAdapter();
         assertEquals(oldLength + 1, arrayAdapter.getCount());
 

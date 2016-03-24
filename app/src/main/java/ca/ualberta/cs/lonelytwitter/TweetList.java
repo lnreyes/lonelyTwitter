@@ -5,8 +5,9 @@ import java.util.ArrayList;
 /**
  * Created by Ian on 22/03/2016.
  */
-public class TweetList {
-    ArrayList<Tweet> tweets;
+@SuppressWarnings("SameParameterValue")
+class TweetList {
+    private ArrayList<Tweet> tweets;
 
     public TweetList(){
         tweets = new ArrayList<Tweet>();
@@ -28,12 +29,22 @@ public class TweetList {
         return tweets.contains(tweet);
     }
 
-    public Tweet getTweet(int index){
-        return tweets.get(index);
+    public Tweet getTweet(){
+        return tweets.get(0);
     }
 
     public void delete(Tweet tweet){
         tweets.remove(tweet);
     }
 
+    public int countImportant() {
+        //Count important tweets
+        int numImportant =0;
+        for ( Tweet aTweet: tweets ){
+            if (aTweet.isImportant() == Boolean.TRUE){
+                numImportant++;
+            }
+        }
+        return numImportant;
+    }
 }
